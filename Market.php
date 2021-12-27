@@ -166,7 +166,7 @@ class Market
     public function onWorkerError(\Swoole\WebSocket\Server $server, int $worker_id, int $worker_pid, int $exit_code, int $signal)
     {
         if (redis(8)->set(CacheKey::MARKET_EMAIL_LOCK . 'wsError', 1, ['nx', 'ex' => 7200])) {
-            send_email_by_submail('123456@qq.com', 'Y的生产ws服务的onWorkerError报错', "worker_id:{$worker_id},exit_code:{$exit_code},signal:{$signal}");
+            send_email_by_submail('123456@qq.com', '生产ws服务的onWorkerError报错', "worker_id:{$worker_id},exit_code:{$exit_code},signal:{$signal}");
         }
     }
 
